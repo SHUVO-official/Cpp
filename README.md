@@ -1,6 +1,6 @@
 # Cpp
 
-<h6>Author — MARUF HASAN SHUVO</h6>
+<h5><b>Author — <i>MARUF HASAN SHUVO</i></b></h5>
 
 <h5>
 💻 Language: C++<br>
