@@ -5,5 +5,5 @@ using namespace std;
     {
         float r=10,pi=3.1415,circumference;
         circumference=2*pi*r;
-        cout<<"The circumference o the circle is:"<<circumference;
+        cout<<"The circumference of circle is:"<<circumference;
     }
