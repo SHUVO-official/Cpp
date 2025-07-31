@@ -1,6 +1,6 @@
 # Cpp
 <div align="center">
-  <img src="new100.jpg" alt="Maruf Hasan Shuvo"height="270" width="600"/>
+  <img src="new100.jpg" alt="Maruf Hasan Shuvo"height="400" width="1200"/>
 </div>
 
 <h1><b>👨‍💻 Author — <i>MARUF HASAN SHUVO</i></b></h1>
