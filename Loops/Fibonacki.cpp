@@ -5,15 +5,15 @@
 using namespace std;
     int main()
     {
-        int n,a=1,b=1,sum=0;
+        int n,first=0,second=1,next=0;
         cout<<"Enter a number: ";
         cin>>n;
-        for(int i=1;i<=n-2;i++)
+        for(int i=1;i<=n;i++)
         {
-            sum=a+b;
-            a=b;
-            b=sum;
+            next=first+second;
+            first=second;
+            second=next;
         }
-        cout<<b;
+        cout<<second;
 
     }
