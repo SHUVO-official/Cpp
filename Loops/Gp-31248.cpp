@@ -9,10 +9,11 @@ using namespace std;
         cout<<"Enter the number:";
         cin>>n;
         int a=3,r=4;
-        for (int i=1 ; i<=n ; a*=r)
+        for (int i=1 ; i<=n ;i++)
         {
             cout<<a<<endl;
-            i++;
+            a*=r;
+            
         }
         
         
