@@ -12,9 +12,7 @@ using namespace std;
     int main()
         {
             int a,b;
-            cout<<"Write Greater num a: ";
-            cin>>a;
-            cout<<"Write leaser num b: ";
-            cin>>b;
+            cout<<"Write 2 num a & b : ";
+            cin>>a>>b;
             odd(a,b);
         }
