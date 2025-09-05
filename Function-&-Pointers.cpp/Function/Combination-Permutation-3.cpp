@@ -25,9 +25,9 @@ using namespace std;
             int n,r;
             cin >> n >> r;
 
-            int nfact=fact(n);
-            int rfact=fact(r);
-            int nrfact=fact(n-r);
+            fact(n);
+            fact(r);
+            fact(n-r);
 
             int nCr=combination(n,r);
             cout<<"Combination: nCr= "<<nCr<<endl;
