@@ -5,7 +5,7 @@ using namespace std;
         int n;
         cout<<"Enter the year: ";
         cin>>n;
-        if((n%400==0  &&  n%4==0)  ||  n%100!=0)
+        if((n%100!=0  &&  n%4==0)  ||  n%400==0)
             cout<<"This year is a Leap year";
             else cout<<"This year is not a Leap year";
     }
