@@ -1,4 +1,4 @@
-/*WAP to print sum=1^2+2^2+3^2+... ...+n^2  */
+/*WAP to print sum=1^1+2^2+3^3+... ...+n^n  */
 #include <iostream>
 using namespace std;
     int main()
