@@ -27,4 +27,5 @@ using namespace std;
                             i+=2;
                         }
                         cout<<sum;
+                        
     }
