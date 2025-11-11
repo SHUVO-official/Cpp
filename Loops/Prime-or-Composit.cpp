@@ -23,5 +23,5 @@ using namespace std;
                             }
                     }    
                 cout<<"Prime.";
-                return 0; 
+                return 0;
         }
