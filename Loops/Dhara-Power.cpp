@@ -4,6 +4,7 @@
 using namespace std;
     int main()
     {
+
                                 /*[For loop]*/
                              
             // int n,sum=0;
@@ -24,4 +25,5 @@ using namespace std;
                     i++;
                 }
                 cout<<sum;
+                
     }
