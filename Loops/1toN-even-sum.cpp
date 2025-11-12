@@ -3,6 +3,7 @@
 using namespace std;
     int main()
     {
+        
                         /*For loop*/
 
            int n,i=0,sum=0;
