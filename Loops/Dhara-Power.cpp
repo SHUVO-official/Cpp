@@ -24,6 +24,5 @@ using namespace std;
                     sum+=pow(i,5);
                     i++;
                 }
-                cout<<sum;
-                
+                cout<<sum;               
     }
