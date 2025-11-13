@@ -4,7 +4,7 @@ using namespace std;
     int main()
     {
         char ch1='A';
-        cout<<(int)ch1<<endl;               //(int)ch ==mane oi carecterer Ascii valau.
+        cout<<(int)ch1<<endl;           //(int)ch ==mane oi carecterer Ascii valau.    
 
         char ch2='b';
         cout<<(int)ch2<<endl;
