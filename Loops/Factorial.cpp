@@ -1,24 +1,25 @@
 /*পূর্ণসংখ্যার factorial নির্ণয়ের প্রোগ্রাম। */
 #include <iostream>
 using namespace std;
-    int main()
+  int main()
     {
-                        /*for loop*/
-
-             int i=1,fact=1,n;
-             cout<<"Enter a number: ";
-             cin>>n;
-               //factoria negative মান বের করতে পারেনা।
-             if(n>0)
-             {
-                for( ;i<=n;i++)
-                {
+      int n;
+      cout<<"Enter a positive integer: ";
+      cin>>n;
+      unsigned long long fact=1;
+      if(n>=0)
+          {
+            if(n==0 || n==1) cout<<"Factorial: 1";
+            else 
+              {
+                for(int i=2;i<=n;i++)
+                  {
                     fact*=i;
-                }
-                cout<<fact;
-             }   
+                  }
+                  cout<<"Factorial: "<<fact;
+              }
+          }
+        else 
+          cout<<"There are no Factorial for negative integer.";  
 
-            //note:এটা বড় মান বের করতে পারবে না এজন্য (unsigned long long) use krte hobe।
-
-
- }
+    }
