@@ -5,7 +5,7 @@
 using namespace std;
     int main()
     {
-        int n,first=0,second=1,next=0;
+        int n,first=0,second=1,next=1;
         cout<<"Enter a number: ";
         cin>>n;
         for(int i=1;i<=n;i++)
