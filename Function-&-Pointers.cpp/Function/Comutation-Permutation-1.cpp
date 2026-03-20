@@ -6,15 +6,15 @@ int main()
         cin >> n >> r;
 
         int nfact=1;
-        for(int i=1;i<=n;i++)
+        for(int i=2;i<=n;i++)
             nfact*=i;
 
         int rfact=1;
-        for(int i=1;i<=r;i++)
+        for(int i=2;i<=r;i++)
             rfact*=i;
 
         int nrfact=1;
-        for(int i=1;i<=n-r;i++)
+        for(int i=2;i<=n-r;i++)
             nrfact*=i;
             
         int nCr=1;
