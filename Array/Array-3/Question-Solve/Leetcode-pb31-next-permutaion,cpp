@@ -1,0 +1,89 @@
+// একটি পূর্ণসংখ্যার array-এর permutation হলো সেই array-এর উপাদানগুলোকে একটি নির্দিষ্ট ক্রমে সাজানো।
+// উদাহরণস্বরূপ, যদি arr = [1,2,3] হয়, তাহলে এর সব permutation হবে:
+// [1,2,3]
+// [1,3,2]
+// [2,1,3]
+// [2,3,1]
+// [3,1,2]
+// [3,2,1]
+
+// Next Permutation মানে হলো array-এর পরবর্তী lexicographically বড় permutation।
+// অর্থাৎ, যদি সব permutation গুলো lexicographical order (dictionary order) অনুযায়ী সাজানো হয়, তাহলে বর্তমান permutation-এর পরের permutation-টাই হবে next permutation।
+
+// যদি এমন কোনো বড় permutation না থাকে (মানে array পুরোটা descending order এ থাকে), তখন array-টাকে ascending order এ সাজাতে হবে (সবচেয়ে ছোট permutation)।
+
+// ✨ উদাহরণ
+// Input: nums = [1,2,3]  
+// Output: [1,3,2]
+
+// Input: nums = [3,2,1]  
+// Output: [1,2,3]
+
+// Input: nums = [1,1,5]  
+// Output: [1,5,1]
+                        // <code>
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// Next permutation বের করার ফাংশন
+void nextPermutation(vector<int>& nums) {
+    int n = nums.size();
+
+    // Step-01: Pivot খোঁজা (ডান দিক থেকে প্রথম index খুঁজবো যেখানে nums[i] < nums[i+1])
+    int idx = -1;
+    for (int i = n - 2; i >= 0; i--) {
+        if (nums[i] < nums[i + 1]) {
+            idx = i;
+            break;
+        }
+    }
+
+    // যদি pivot না পাওয়া যায়, তার মানে array পুরোটা decreasing order এ আছে
+    // তখন reverse করে সবচেয়ে ছোট permutation বানানো হয়
+    if (idx == -1) {
+        reverse(nums.begin(), nums.end());
+        return;
+    }
+
+    // Step-02: Pivot এর সাথে swap করা (ডান দিক থেকে pivot এর চেয়ে বড় element খুঁজে swap করবো)
+    for (int i = n - 1; i > idx; i--) {
+        if (nums[i] > nums[idx]) {
+            swap(nums[i], nums[idx]);
+            break;
+        }
+    }
+
+    // Step-03: Pivot এর পরের অংশ (suffix) সবসময় decreasing থাকে
+    // Reverse করলে সেটা ascending হয়ে যায় → সবচেয়ে ছোট suffix পাওয়া যায়
+    reverse(nums.begin() + idx + 1, nums.end());
+}
+
+// Vector display করার ফাংশন
+void display(vector<int>& nums) {
+    for (int x : nums) cout << x << " ";
+    cout << endl;
+}
+
+int main() {
+    
+    vector<int> nums = {1, 5, 4, 3, 2, 7, 6};
+
+    // Step-A: Original array print করা
+    cout << "Original array: ";
+    display(nums);
+
+    // Step-B: nextPermutation ফাংশন কল করা
+    // এখানে আমাদের algorithm কাজ করবে → pivot খুঁজবে, swap করবে, suffix reverse করবে
+    nextPermutation(nums);
+
+    // Step-C: Final result print করা
+    cout << "Next permutation: ";
+    display(nums);
+
+    // Program শেষ
+    return 0;
+}
+
