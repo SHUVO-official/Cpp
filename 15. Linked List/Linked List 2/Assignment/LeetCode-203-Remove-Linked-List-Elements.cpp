@@ -58,10 +58,9 @@ int main() {
 
     Solution s;
     int val = 6; // সব 6 বাদ দিতে হবে
-    head = s.removeElements(head, val);
+    Node* temp= s.removeElements(head, val);
 
     cout << "After removing " << val << ": ";
-    display(head);
+    display(temp);
 
-    return 0;
 }
