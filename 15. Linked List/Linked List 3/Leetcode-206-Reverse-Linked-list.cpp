@@ -24,7 +24,7 @@ void display(Node* head) {
 Node* reverseList(Node* head) {
     Node* prev = NULL;   // আগের node ধরে রাখবে (শুরুতে NULL)
     Node* curr = head;   // বর্তমান node (শুরুতে head)
-    Node* NEXT;          // পরের node ধরে রাখার জন্য
+    Node* NEXT=head;          // পরের node ধরে রাখার জন্য
 
     // যতক্ষণ না curr NULL হয়, লুপ চলবে
     while (curr != NULL) {
