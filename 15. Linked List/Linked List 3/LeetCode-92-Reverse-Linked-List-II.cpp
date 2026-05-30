@@ -35,7 +35,7 @@ Node* reverseBetween(Node* head, int m, int n) {
 
     // Step 2: reverse করার জন্য pointer set করো
     Node* curr = prev->next;     // m position এ থাকা node
-    Node* NEXT;
+    Node* NEXT=NULL;
 
     // Step 3: m থেকে n পর্যন্ত reverse করো
     for (int i = 0; i < n - m; i++) {
