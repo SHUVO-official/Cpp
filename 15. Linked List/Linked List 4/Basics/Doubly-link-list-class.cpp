@@ -44,7 +44,7 @@ using namespace std;
             void insertatidx(int val,int idx)
                 {
                     if(idx==0) insertatHead(val);
-                    else if(idx==0) insertatTail(val);
+                    else if(idx==size) insertatTail(val);
                     else
                         {
                             Node* n=new Node(val);
