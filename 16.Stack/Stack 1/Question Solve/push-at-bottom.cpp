@@ -37,6 +37,18 @@ using namespace std;
                     temp.pop();
                 }    
         }
+    void pushatbottomrec(stack<int>& st,int val)
+        {
+            if(st.size() == 0) 
+                {
+                    st.push(val);
+                    return;
+                }
+            int x=st.top();
+            st.pop();
+            pushatbottomrec(st,val);
+            st.push(x);
+        }    
     int main()
         {
             stack<int> st;
@@ -46,9 +58,12 @@ using namespace std;
             st.push(40);
             st.push(50);
 
-            print(st);  
-            
-            pushatbottom(st,111);
+            print(st);
+
+            //Itteritively
+            // pushatbottom(st,111);
+            //Recursively
+            pushatbottomrec(st,111);
 
             print(st);
         }
