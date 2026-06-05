@@ -47,7 +47,12 @@ public:
         return head->val;
     }
 
-    // Top → Bottom display (default stack order)
+    // Stack এর size বের করা
+    int getSize() {
+        return size;
+    }
+
+    // Top → Bottom display
     void displayTopToBottom() {
         Node* temp = head;
         while (temp != NULL) {
@@ -64,7 +69,7 @@ public:
         cout << temp->val << " ";
     }
 
-    // Bottom → Top display (insertion order)
+    // Bottom → Top display
     void displayBottomToTop() {
         displayReverseHelper(head);
         cout << endl;
@@ -86,5 +91,8 @@ int main() {
 
     cout << "Bottom -> Top: ";
     st.displayBottomToTop();   // Output: 10 20 30 40 50
+
+    cout << "Stack size: " << st.getSize() << endl; // Output: 5
 }
+
 
