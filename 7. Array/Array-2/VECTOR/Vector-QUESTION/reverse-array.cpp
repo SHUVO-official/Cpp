@@ -25,13 +25,12 @@ using namespace std;
 
             display(v);
 
-            // for(int i=0,j=v.size()-1;i<=j;i++,j--)
-            //     {
-            //         //swap v[i]=v[i]
-            //         int temp=v[i];
-            //         v[i]=v[j];
-            //         v[j]=temp;
-            //     }
-            reverse(v.begin(),v.end());
+            for(int i=0,j=v.size()-1;i<=j;i++,j--)
+                {
+                    int temp=v[i];
+                    v[i]=v[j];
+                    v[j]=temp;
+                }
+            // reverse(v.begin(),v.end());
             display(v);
         }
