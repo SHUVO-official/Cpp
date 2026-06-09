@@ -28,7 +28,6 @@ using namespace std;
                     v[i]=v[j];
                     v[j]=temp;
                 }
-                return;
                     }    
     int main()
         {
