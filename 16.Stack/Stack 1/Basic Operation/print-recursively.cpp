@@ -3,7 +3,7 @@
 using namespace std;
 void display(stack<int>& st)
     {
-        if(st.size() == 0) return;
+        if(st.empty()) return;
         int x=st.top();
         st.pop();
         // cout<<x<<" ";
