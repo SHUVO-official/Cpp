@@ -2,10 +2,11 @@
 using namespace std;
 
 class Queue {
+    public:
     vector<int> v;   // vector দিয়ে ডাটা রাখবো
     int f;           // front index
 
-public:
+
     Queue() {
         f = 0;
     }
