@@ -10,3 +10,4 @@
 | 3  | 226          | Invert Binary Tree | [LeetCode](https://leetcode.com/problems/invert-binary-tree/) |
 | 4  | 257          | Binary Tree Paths | [LeetCode](https://leetcode.com/problems/binary-tree-paths/) |
 | 5  | 236          | Lowest Common Ancestor of a Binary Tree | [LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) |
+| 6  | 200          | weqweqwewq    |       |     
