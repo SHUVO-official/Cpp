@@ -18,3 +18,6 @@
 | 11 |               | Delete Head of Linked List | Easy | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/delete-head-of-linked-list/1) |
 | 12 |               | Queue using Linked List | Basic | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/queue-using-linked-list/1) |
 | 13 |               | Queue Using Array | Basic | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/queue-using-array/1) |
+| 14 | 232           | Implement Queue using Stacks | Easy | [LeetCode](https://leetcode.com/problems/implement-queue-using-stacks/) |
+| 15 | 933           | Number of Recent Calls | Easy | [LeetCode](https://leetcode.com/problems/number-of-recent-calls/) |
+| 16 | 1700          | Number of Students Unable to Eat Lunch | Easy | [LeetCode](https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/) |
