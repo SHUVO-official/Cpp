@@ -15,3 +15,12 @@
 | 8  | -   | Inorder Traversal | [GeeksforGeeks](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/) |
 | 9  | -   | Preorder Traversal | [GeeksforGeeks](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/) |
 | 10 | -   | Postorder Traversal | [GeeksforGeeks](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/) |
+| 11 | -   | Root to Leaf Path Sum | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/root-to-leaf-path-sum/1) |
+| 12 | -   | Lowest Common Ancestor in a BST | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-bst/1) |
+| 13 | -   | Left View of Binary Tree | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/left-view-of-binary-tree/1) |
+| 14 | -   | Right View of Binary Tree | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/right-view-of-binary-tree/1) |
+| 15 | -   | Count Non-Leaf Nodes in Tree | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/count-non-leaf-nodes-in-tree/1) |
+| 16 | -   | Count Leaves in Binary Tree | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/count-leaves-in-binary-tree/1) |
+| 17 | 112 | Path Sum | [LeetCode](https://leetcode.com/problems/path-sum/) |
+| 18 | 199 | Binary Tree Right Side View | [LeetCode](https://leetcode.com/problems/binary-tree-right-side-view/) |
+
