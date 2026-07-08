@@ -23,4 +23,9 @@
 | 16 | -   | Count Leaves in Binary Tree | [GeeksforGeeks](https://www.geeksforgeeks.org/problems/count-leaves-in-binary-tree/1) |
 | 17 | 112 | Path Sum | [LeetCode](https://leetcode.com/problems/path-sum/) |
 | 18 | 199 | Binary Tree Right Side View | [LeetCode](https://leetcode.com/problems/binary-tree-right-side-view/) |
-
+| 19 | 404 | Sum of Left Leaves | [LeetCode](https://leetcode.com/problems/sum-of-left-leaves/) |
+| 20 | 572 | Subtree of Another Tree | [LeetCode](https://leetcode.com/problems/subtree-of-another-tree/) |
+| 21 | 617 | Merge Two Binary Trees | [LeetCode](https://leetcode.com/problems/merge-two-binary-trees/) |
+| 22 | 637 | Average of Levels in Binary Tree | [LeetCode](https://leetcode.com/problems/average-of-levels-in-binary-tree/) |
+| 23 | 872 | Leaf-Similar Trees | [LeetCode](https://leetcode.com/problems/leaf-similar-trees/) |
+| 24 | 965 | Univalued Binary Tree | [LeetCode](https://leetcode.com/problems/univalued-binary-tree/) |
