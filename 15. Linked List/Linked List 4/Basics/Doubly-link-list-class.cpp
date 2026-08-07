@@ -43,8 +43,8 @@ using namespace std;
                 }    
             void insertatidx(int val,int idx)
                 {
-                    if(idx==0) insertatHead(val);
-                    else if(idx==size) insertatTail(val);
+                    if(idx==0) return insertatHead(val);
+                    else if(idx==size) return insertatTail(val);
                     else
                         {
                             Node* n=new Node(val);
