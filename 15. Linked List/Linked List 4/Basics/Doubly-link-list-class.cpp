@@ -26,8 +26,8 @@ using namespace std;
                 }
             void delatidx(int idx)
                 {
-                    if(idx==0) delathead();
-                    else if(idx==size-1) delatTail();
+                    if(idx==0) return delathead();
+                    else if(idx==size-1) return delatTail();
                     else
                         {
                             Node* temp=head;
