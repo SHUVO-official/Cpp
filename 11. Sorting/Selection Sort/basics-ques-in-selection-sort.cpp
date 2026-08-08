@@ -2,7 +2,7 @@
 using namespace std;
     int main()
         {
-            int arr[]={4,-2,9,6};
+            int arr[]={4,-2,9,-30};
             int n=4;
             for(int ele:arr)
                 {
@@ -13,15 +13,10 @@ using namespace std;
             //selection sort
             for(int i=0;i<n-1;i++)
                 {
-                    int min=INT_MAX;
-                    int mindx=-1;
-                    for(int j=i;j<n;j++)
+                    int mindx=i;
+                    for(int j=i+1;j<n;j++)
                         {
-                            if(arr[j]<min)
-                                {
-                                    min=arr[j];
-                                    mindx=j;
-                                }
+                            if(arr[j]<arr[mindx]) mindx=j;
                         }
                         swap(arr[i],arr[mindx]);
                 }
