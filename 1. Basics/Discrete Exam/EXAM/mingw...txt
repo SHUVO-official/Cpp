@@ -1,0 +1,508 @@
+// pow set
+
+
+#include 
+
+int main() {
+    int n, a[100];
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    int total = 1 << n; // Total subsets = 2^n
+
+    printf("\nPower Set:\n");
+    for (int i = 0; i < total; i++) {
+        printf("{ ");
+        for (int j = 0; j < n; j++) {
+            // Check if j-th bit is set in i
+            if (i & (1 << j)) {
+                printf("%d ", a[j]);
+            }
+        }
+        printf("}\n");
+    }
+
+    printf("\nTotal Subsets |P(A)| = %d\n", total);
+    return 0;
+}
+
+
+
+
+
+
+
+
+// one to one, onto
+
+
+#include 
+
+int main() {
+    int n, m;
+    printf("Enter domain size (N) and codomain size (M): ");
+    scanf("%d %d", &n, &m);
+
+    int domain[100], codomain[100];
+    printf("Enter mapping pairs (x f(x)):\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d %d", &domain[i], &codomain[i]);
+    }
+
+    // One-to-One Check
+    int isOneToOne = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (codomain[i] == codomain[j]) {
+                isOneToOne = 0;
+                break;
+            }
+        }
+    }
+
+    // Onto Check
+    int isOnto = 1;
+    for (int target = 1; target <= m; target++) {
+        int found = 0;
+        for (int i = 0; i < n; i++) {
+            if (codomain[i] == target) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            isOnto = 0;
+            break;
+        }
+    }
+
+    printf("\n--- Results ---\n");
+    printf("One-to-One: %s\n", isOneToOne ? "YES" : "NO");
+    printf("Onto      : %s\n", isOnto ? "YES" : "NO");
+    printf("Bijective : %s\n", (isOneToOne && isOnto) ? "YES" : "NO");
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// graph
+
+
+
+
+#include 
+
+#define MAX 100
+
+int graph[MAX][MAX];
+
+int main() {
+    int vertices, edges;
+
+    printf("Enter number of vertices and edges: ");
+    scanf("%d %d", &vertices, &edges);
+
+    // Matrix initial 0 kora
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            graph[i][j] = 0;
+        }
+    }
+
+    printf("Enter edges (u v):\n");
+    for (int i = 0; i < edges; i++) {
+        int u, v;
+        scanf("%d %d", &u, &v);
+        graph[u][v] = 1;
+        graph[v][u] = 1; // Undirected graph-er jonno (Directed hole ei line baad jabe)
+    }
+
+    printf("\nAdjacency Matrix:\n  ");
+    for (int i = 0; i < vertices; i++) {
+        printf(" %d", i);
+    }
+    printf("\n");
+
+    for (int i = 0; i < vertices; i++) {
+        printf("%d: ", i);
+        for (int j = 0; j < vertices; j++) {
+            printf("%d ", graph[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// treee
+
+
+
+#include 
+#include 
+
+typedef struct Node {
+    int data;
+    struct Node *left, *right;
+} Node;
+
+// New Node Creation
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+// Sequential BST Insertion
+Node* insertBST(Node* root, int data) {
+    if (root == NULL) return createNode(data);
+    if (data < root->data) root->left = insertBST(root->left, data);
+    else if (data > root->data) root->right = insertBST(root->right, data);
+    return root;
+}
+
+// Visual Tree Print (Reversed In-Order)
+void printTree(Node* root, int space) {
+    if (root == NULL) return;
+
+    space += 5;
+
+    // Right Child First
+    printTree(root->right, space);
+
+    // Current Node
+    printf("\n");
+    for (int i = 5; i < space; i++) printf(" ");
+    printf("%d\n", root->data);
+
+    // Left Child
+    printTree(root->left, space);
+}
+
+int main() {
+    int n, val;
+    Node* root = NULL;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &val);
+        root = insertBST(root, val);
+    }
+
+    printf("\n--- Binary Search Tree Visual Output ---");
+    printTree(root, 0);
+    printf("\n");
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// pro logic
+
+
+#include 
+
+// Conditional / Implication Logic (P -> Q is equivalent to !P || Q)
+int implies(int p, int q) {
+    return (!p || q);
+}
+
+// Biconditional Logic (P <-> Q is true when both are same)
+int biconditional(int p, int q) {
+    return (p == q);
+}
+
+int main() {
+    printf("--- Propositional Logic Truth Table ---\n\n");
+    printf("P | Q | NOT P | P AND Q | P OR Q | P -> Q | P <-> Q\n");
+    printf("---------------------------------------------------\n");
+
+    for (int p = 1; p >= 0; p--) {
+        for (int q = 1; q >= 0; q--) {
+            printf("%d | %d |   %d   |    %d    |   %d    |   %d    |    %d\n",
+                   p, 
+                   q, 
+                   !p, 
+                   p && q, 
+                   p || q, 
+                   implies(p, q), 
+                   biconditional(p, q));
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+// permu combina
+
+
+
+#include 
+
+// Permutation: nPr = n! / (n - r)!
+long long nPr(int n, int r) {
+    if (r > n) return 0;
+    long long ans = 1;
+    for (int i = 0; i < r; i++) {
+        ans *= (n - i);
+    }
+    return ans;
+}
+
+// Combination: nCr = n! / (r! * (n - r)!)
+long long nCr(int n, int r) {
+    if (r > n) return 0;
+    if (r == 0 || r == n) return 1;
+    
+    long long p = 1, k = 1;
+    if (r > n - r) r = n - r; // Symmetry property: nCr = nC(n-r)
+    
+    while (r) {
+        p *= n;
+        k *= r;
+        long long m = p % k == 0 ? k : 1; // Overflow এড়ানোর জন্য সরলীকরণ
+        p /= m; 
+        k /= m;
+        n--; 
+        r--;
+    }
+    return p;
+}
+
+int main() {
+    int n, r;
+
+    printf("Enter values for n and r: ");
+    scanf("%d %d", &n, &r);
+
+    if (n < 0 || r < 0 || r > n) {
+        printf("Invalid input! Ensure n >= r >= 0.\n");
+        return 1;
+    }
+
+    printf("\n--- Results ---\n");
+    printf("Permutation  (%dP%d) = %lld\n", n, r, nPr(n, r));
+    printf("Combination  (%dC%d) = %lld\n", n, r, nCr(n, r));
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// sym, trans, reflex
+
+#include 
+
+#define MAX 100
+
+int R[MAX][MAX];
+
+int main() {
+    int n;
+
+    printf("Enter number of elements in the set (N): ");
+    scanf("%d", &n);
+
+    printf("Enter the Relation Matrix (%dx%d):\n", n, n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &R[i][j]);
+        }
+    }
+
+    int isReflexive = 1;
+    int isSymmetric = 1;
+    int isTransitive = 1;
+
+    // 1. Reflexive Check: Diagonal elements R[i][i] = 1 hote hobe
+    for (int i = 0; i < n; i++) {
+        if (R[i][i] != 1) {
+            isReflexive = 0;
+            break;
+        }
+    }
+
+    // 2. Symmetric Check: R[i][j] == R[j][i] hote hobe
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (R[i][j] != R[j][i]) {
+                isSymmetric = 0;
+                break;
+            }
+        }
+    }
+
+    // 3. Transitive Check: R[i][j] = 1 ebong R[j][k] = 1 hole R[i][k] = 1 hote hobe
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                if (R[i][j] && R[j][k] && !R[i][k]) {
+                    isTransitive = 0;
+                    break;
+                }
+            }
+        }
+    }
+
+    printf("\n--- Relation Analysis Results ---\n");
+    printf("Reflexive  : %s\n", isReflexive ? "YES" : "NO");
+    printf("Symmetric  : %s\n", isSymmetric ? "YES" : "NO");
+    printf("Transitive : %s\n", isTransitive ? "YES" : "NO");
+    printf("Equivalence: %s\n", (isReflexive && isSymmetric && isTransitive) ? "YES" : "NO");
+
+    return 0;
+}
+
+
+
+
+
+
+
+//
+//At most 6 Length & At least one 1 — Only Number Pr
+
+
+#include 
+
+int main() {
+    int max_length = 6;
+    long long total_valid_strings = 0;
+
+    // Length 1 to 6 পর্যন্ত প্রতিটি দৈর্ঘ্যের জন্য (2^len - 1) যোগ করা হচ্ছে
+    for (int len = 1; len <= max_length; len++) {
+        total_valid_strings += ((1LL << len) - 1);
+    }
+
+    // Console-এ শুধুমাত্র নম্বরটি প্রিন্ট হবে
+    printf("%lld\n", total_valid_strings);
+
+    return 0;
+}
+
+
+
+
+
+
+// tree travarsal
+
+
+
+
+#include 
+#include 
+
+typedef struct Node {
+    int data;
+    struct Node *left, *right;
+} Node;
+
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+Node* insertBST(Node* root, int data) {
+    if (root == NULL) return createNode(data);
+    if (data < root->data) root->left = insertBST(root->left, data);
+    else if (data > root->data) root->right = insertBST(root->right, data);
+    return root;
+}
+
+// 1. In-order Traversal (Left -> Root -> Right)
+void inOrder(Node* root) {
+    if (root == NULL) return;
+    inOrder(root->left);
+    printf("%d ", root->data);
+    inOrder(root->right);
+}
+
+// 2. Pre-order Traversal (Root -> Left -> Right)
+void preOrder(Node* root) {
+    if (root == NULL) return;
+    printf("%d ", root->data);
+    preOrder(root->left);
+    preOrder(root->right);
+}
+
+// 3. Post-order Traversal (Left -> Right -> Root)
+void postOrder(Node* root) {
+    if (root == NULL) return;
+    postOrder(root->left);
+    postOrder(root->right);
+    printf("%d ", root->data);
+}
+
+int main() {
+    int n, val;
+    Node* root = NULL;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &val);
+        root = insertBST(root, val);
+    }
+
+    printf("\nIn-order Traversal  : ");
+    inOrder(root);
+    
+    printf("\nPre-order Traversal : ");
+    preOrder(root);
+    
+    printf("\nPost-order Traversal: ");
+    postOrder(root);
+    printf("\n");
+
+    return 0;
+}

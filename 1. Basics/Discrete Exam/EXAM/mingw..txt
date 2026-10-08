@@ -1,0 +1,614 @@
+//union
+
+#include 
+
+int main() {
+    FILE *fl = fopen("input.txt", "r");
+    if (fl == NULL) return 1;
+
+    int a[100], b[100], c[200], counta = 0, countb = 0, cu = 0;
+    char ch;
+
+    // First line for Set A
+    while (((ch = fgetc(fl)) != '\n') && ch != EOF) {
+        if (ch >= '0' && ch <= '9') {
+            ungetc(ch, fl);
+            fscanf(fl, "%d", &a[counta++]);
+        }
+    }
+
+    // Second line for Set B
+    while (((ch = fgetc(fl)) != '\n') && ch != EOF) {
+        if (ch >= '0' && ch <= '9') {
+            ungetc(ch, fl);
+            fscanf(fl, "%d", &b[countb++]);
+        }
+    }
+    fclose(fl);
+
+    // Set A element-গুলো c-তে কপি করা
+    for (int i = 0; i < counta; i++) {
+        c[cu++] = a[i];
+    }
+
+    // Set B element-গুলোর জন্য Duplicate Check
+    for (int i = 0; i < countb; i++) {
+        int dup = 0;
+        for (int j = 0; j < cu; j++) {
+            if (b[i] == c[j]) {
+                dup = 1;
+                break;
+            }
+        }
+        if (!dup) c[cu++] = b[i];
+    }
+
+    // Output Writing
+    FILE *of = fopen("output.txt", "w");
+    fprintf(of, "A U B = [");
+    for (int i = 0; i < cu; i++) {
+        fprintf(of, "%d%s", c[i], (i == cu - 1) ? "" : ", ");
+    }
+    fprintf(of, "]\n");
+    fclose(of);
+
+    return 0;
+}
+
+
+
+
+
+
+
+//intersection
+
+#include 
+
+int main() {
+    FILE *fl = fopen("input.txt", "r");
+    if (fl == NULL) return 1;
+
+    int a[100], b[100], c[100], counta = 0, countb = 0, cu = 0;
+    char ch;
+
+    while (((ch = fgetc(fl)) != '\n') && ch != EOF) {
+        if (ch >= '0' && ch <= '9') {
+            ungetc(ch, fl);
+            fscanf(fl, "%d", &a[counta++]);
+        }
+    }
+
+    while (((ch = fgetc(fl)) != '\n') && ch != EOF) {
+        if (ch >= '0' && ch <= '9') {
+            ungetc(ch, fl);
+            fscanf(fl, "%d", &b[countb++]);
+        }
+    }
+    fclose(fl);
+
+    // Intersection Check
+    for (int i = 0; i < counta; i++) {
+        for (int j = 0; j < countb; j++) {
+            if (a[i] == b[j]) {
+                int dup = 0;
+                for (int k = 0; k < cu; k++) {
+                    if (a[i] == c[k]) { // সঠিক: c[k]
+                        dup = 1;
+                        break;
+                    }
+                }
+                if (!dup) c[cu++] = a[i];
+            }
+        }
+    }
+
+    FILE *of = fopen("output.txt", "w");
+    fprintf(of, "A n B = {");
+    for (int i = 0; i < cu; i++) {
+        fprintf(of, "%d%s", c[i], (i == cu - 1) ? "" : ", ");
+    }
+    fprintf(of, "}\n");
+    fclose(of);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+// power ser
+
+
+#include 
+
+int a[100];
+int counta = 0;
+
+int main() {
+    FILE *fl = fopen("input.txt", "r");
+    if (fl == NULL) return 1;
+
+    char ch;
+    while ((ch = fgetc(fl)) != EOF) {
+        if (ch >= '0' && ch <= '9') {
+            ungetc(ch, fl);
+            fscanf(fl, "%d", &a[counta++]);
+        }
+    }
+    fclose(fl);
+
+    FILE *of = fopen("output.txt", "w");
+    int total = 1 << counta; // 2^n
+
+    fprintf(of, "Power Set A:\n");
+    for (int i = 0; i < total; i++) {
+        fprintf(of, "{ ");
+        for (int j = 0; j < counta; j++) {
+            if (i & (1 << j)) {
+                fprintf(of, "%d ", a[j]);
+            }
+        }
+        fprintf(of, "}\n");
+    }
+
+    fprintf(of, "|P(A)| = %d\n", total);
+    fclose(of);
+    return 0;
+}
+
+
+
+
+
+
+
+// one to one , onto
+
+
+#include 
+
+int main() {
+    FILE *fl = fopen("input.txt", "r");
+    if (fl == NULL) {
+        printf("Error: input.txt file paowa jayni!\n");
+        return 1;
+    }
+
+    int n, m; // n = domain size, m = codomain size
+    fscanf(fl, "%d %d", &n, &m);
+
+    int domain[100], codomain[100];
+    for (int i = 0; i < n; i++) {
+        fscanf(fl, "%d %d", &domain[i], &codomain[i]);
+    }
+    fclose(fl);
+
+    // 1. One-to-One Check (Injective)
+    // Domain-er distinct input-er jonno output-o distinct kina
+    int isOneToOne = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (codomain[i] == codomain[j]) {
+                isOneToOne = 0;
+                break;
+            }
+        }
+    }
+
+    // 2. Onto Check (Surjective)
+    // Codomain-er protiti element (1 to m) kono na kono domain element-er shathe mapped kina
+    int isOnto = 1;
+    for (int target = 1; target <= m; target++) {
+        int found = 0;
+        for (int i = 0; i < n; i++) {
+            if (codomain[i] == target) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            isOnto = 0;
+            break;
+        }
+    }
+
+    // Output Writing to File
+    FILE *of = fopen("output.txt", "w");
+    if (of != NULL) {
+        fprintf(of, "One-to-One: %s\n", isOneToOne ? "YES" : "NO");
+        fprintf(of, "Onto: %s\n", isOnto ? "YES" : "NO");
+        fprintf(of, "Bijective: %s\n", (isOneToOne && isOnto) ? "YES" : "NO");
+        fclose(of);
+    }
+
+    printf("Function properties checked and output saved to output.txt successfully!\n");
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// graph
+
+
+#include 
+
+#define MAX 100
+int graph[MAX][MAX];
+
+int main() {
+    FILE *fl = fopen("input.txt", "r");
+    if (fl == NULL) return 1;
+
+    int vertices, edges;
+    fscanf(fl, "%d %d", &vertices, &edges);
+
+    for (int i = 0; i < vertices; i++)
+        for (int j = 0; j < vertices; j++)
+            graph[i][j] = 0;
+
+    for (int i = 0; i < edges; i++) {
+        int u, v;
+        fscanf(fl, "%d %d", &u, &v);
+        graph[u][v] = 1;
+        graph[v][u] = 1; // Directed হলে এই লাইন বাদ যাবে
+    }
+    fclose(fl);
+
+    FILE *of = fopen("output.txt", "w");
+    fprintf(of, "Adjacency Matrix:\n  ");
+    for (int i = 0; i < vertices; i++) fprintf(of, " %d", i);
+    fprintf(of, "\n");
+
+    for (int i = 0; i < vertices; i++) {
+        fprintf(of, "%d: ", i);
+        for (int j = 0; j < vertices; j++) {
+            fprintf(of, "%d ", graph[i][j]);
+        }
+        fprintf(of, "\n");
+    }
+    fclose(of);
+    return 0;
+}
+
+
+
+
+
+
+
+
+// tree
+
+
+
+
+#include 
+#include 
+
+typedef struct Node {
+    int data;
+    struct Node *left, *right;
+} Node;
+
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+Node* insertBST(Node* root, int data) {
+    if (root == NULL) return createNode(data);
+    if (data < root->data) root->left = insertBST(root->left, data);
+    else if (data > root->data) root->right = insertBST(root->right, data);
+    return root;
+}
+
+void printTree(Node* root, int space, FILE* of) {
+    if (root == NULL) return;
+    space += 5;
+    printTree(root->right, space, of);
+    fprintf(of, "\n");
+    for (int i = 5; i < space; i++) fprintf(of, " ");
+    fprintf(of, "%d\n", root->data);
+    printTree(root->left, space, of);
+}
+
+int main() {
+    FILE *fl = fopen("input.txt", "r");
+    if (fl == NULL) return 1;
+
+    Node* root = NULL;
+    int val;
+    char ch;
+
+    while ((ch = fgetc(fl)) != EOF) {
+        if (ch >= '0' && ch <= '9') {
+            ungetc(ch, fl);
+            fscanf(fl, "%d", &val);
+            root = insertBST(root, val);
+        }
+    }
+    fclose(fl);
+
+    FILE *of = fopen("output.txt", "w");
+    fprintf(of, "BST Visualization:\n");
+    printTree(root, 0, of);
+    fclose(of);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+// propo logic
+
+
+#include 
+
+int implies(int p, int q) {
+    return (!p || q);
+}
+
+int biconditional(int p, int q) {
+    return (p == q);
+}
+
+int main() {
+    printf("P | Q | P AND Q | P OR Q | P -> Q | P <-> Q\n");
+    printf("--------------------------------------------\n");
+
+    for (int p = 1; p >= 0; p--) {
+        for (int q = 1; q >= 0; q--) {
+            printf("%d | %d |    %d    |   %d    |   %d    |    %d\n",
+                   p, q, p && q, p || q, implies(p, q), biconditional(p, q));
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+// permutation com
+
+
+
+#include 
+
+long long factorial(int n) {
+    long long fact = 1;
+    for (int i = 1; i <= n; i++) fact *= i;
+    return fact;
+}
+
+long long nPr(int n, int r) {
+    if (r > n) return 0;
+    return factorial(n) / factorial(n - r);
+}
+
+long long nCr(int n, int r) {
+    if (r > n) return 0;
+    return factorial(n) / (factorial(r) * factorial(n - r));
+}
+
+int main() {
+    int n = 5, r = 3;
+    printf("%dP%d = %lld\n", n, r, nPr(n, r));
+    printf("%dC%d = %lld\n", n, r, nCr(n, r));
+    return 0;
+}
+
+
+
+
+
+
+
+
+// symen, reflex, transis
+
+
+
+#include 
+
+#define N 3
+
+void checkEquivalence(int R[N][N]) {
+    int isReflexive = 1, isSymmetric = 1, isTransitive = 1;
+
+    // Reflexive: R[i][i] == 1 for all i
+    for (int i = 0; i < N; i++) {
+        if (R[i][i] != 1) { isReflexive = 0; break; }
+    }
+
+    // Symmetric: R[i][j] == R[j][i]
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (R[i][j] != R[j][i]) { isSymmetric = 0; break; }
+        }
+    }
+
+    // Transitive: R[i][j] == 1 && R[j][k] == 1 => R[i][k] == 1
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k < N; k++) {
+                if (R[i][j] && R[j][k] && !R[i][k]) {
+                    isTransitive = 0;
+                }
+            }
+        }
+    }
+
+    printf("Reflexive: %s\n", isReflexive ? "YES" : "NO");
+    printf("Symmetric: %s\n", isSymmetric ? "YES" : "NO");
+    printf("Transitive: %s\n", isTransitive ? "YES" : "NO");
+
+    if (isReflexive && isSymmetric && isTransitive)
+        printf("The relation is an EQUIVALENCE relation.\n");
+    else
+        printf("The relation is NOT an Equivalence relation.\n");
+}
+
+int main() {
+    int R[N][N] = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1}
+    };
+    checkEquivalence(R);
+    return 0;
+}
+
+
+
+//At most 6 Length & At least one 1 — Only Number Pr
+
+
+
+
+#include 
+
+int main() {
+    int max_length = 6;
+    long long total_valid_strings = 0;
+
+    for (int len = 1; len <= max_length; len++) {
+        total_valid_strings += ((1LL << len) - 1);
+    }
+
+    FILE *of = fopen("output.txt", "w");
+    if (of != NULL) {
+        fprintf(of, "%lld\n", total_valid_strings);
+        fclose(of);
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+// tree travarsal
+
+
+#include 
+#include 
+
+typedef struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+} Node;
+
+// Node Creation
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+// BST Insertion
+Node* insertBST(Node* root, int data) {
+    if (root == NULL) return createNode(data);
+    if (data < root->data) root->left = insertBST(root->left, data);
+    else if (data > root->data) root->right = insertBST(root->right, data);
+    return root;
+}
+
+// 1. In-order Traversal (Left -> Root -> Right)
+// BST-এর ক্ষেত্রে In-order ট্রাভার্সাল ছোট থেকে বড় (Ascending Order) সর্টেড ডাটা দেয়।
+void inOrder(Node* root, FILE* of) {
+    if (root == NULL) return;
+    inOrder(root->left, of);
+    fprintf(of, "%d ", root->data);
+    inOrder(root->right, of);
+}
+
+// 2. Pre-order Traversal (Root -> Left -> Right)
+void preOrder(Node* root, FILE* of) {
+    if (root == NULL) return;
+    fprintf(of, "%d ", root->data);
+    preOrder(root->left, of);
+    preOrder(root->right, of);
+}
+
+// 3. Post-order Traversal (Left -> Right -> Root)
+void postOrder(Node* root, FILE* of) {
+    if (root == NULL) return;
+    postOrder(root->left, of);
+    postOrder(root->right, of);
+    fprintf(of, "%d ", root->data);
+}
+
+int main() {
+    FILE *fl = fopen("input.txt", "r");
+    if (fl == NULL) {
+        printf("Error: input.txt file not found!\n");
+        return 1;
+    }
+
+    Node* root = NULL;
+    int val;
+    char ch;
+
+    while ((ch = fgetc(fl)) != EOF) {
+        if (ch >= '0' && ch <= '9') {
+            ungetc(ch, fl);
+            fscanf(fl, "%d", &val);
+            root = insertBST(root, val);
+        }
+    }
+    fclose(fl);
+
+    FILE *of = fopen("output.txt", "w");
+
+    fprintf(of, "In-order Traversal  : ");
+    inOrder(root, of);
+    fprintf(of, "\n");
+
+    fprintf(of, "Pre-order Traversal : ");
+    preOrder(root, of);
+    fprintf(of, "\n");
+
+    fprintf(of, "Post-order Traversal: ");
+    postOrder(root, of);
+    fprintf(of, "\n");
+
+    fclose(of);
+    printf("BST Traversals saved to output.txt successfully!\n");
+
+    return 0;
+}
+
+
+
