@@ -1,5 +1,5 @@
 /*This code demonstrate the area of circle*/
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
     int main()
         {
