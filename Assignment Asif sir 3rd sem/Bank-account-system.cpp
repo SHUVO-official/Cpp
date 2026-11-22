@@ -1,95 +1,70 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-class BankAccount
-    {
-        public:
-
-        // Data Members
-        string depositorName;
-        string accountNumber;
-        double balance;
-
-        BankAccount(string name, string accNo, double bal)
-            {
-                this->depositorName = name;
-                this->accountNumber = accNo;
-                this->balance = bal;
-            }
-
-        // Method to deposit money
-        void deposit(double amount)
-            {
-                if(amount >= 500 && amount <= 50000)
-                    {
-                        balance = balance + amount;
-                        cout<<"Deposit Successful!"<<endl;
-                    }
-                else
-                    {
-                        cout<<"Invalid Deposit Amount!"<<endl;
-                    }
-            }
-
-        // Method to withdraw money
-        void withdraw(double amount)
-            {
-                if(amount <= 0)
+    class BankAccount
+        {
+            public:
+            string depositorname;
+            string depositoraccount;
+            double balance;
+            BankAccount(string name,string accNo,double bal)
                 {
-                    cout<<"Invalid Withdrawal Amount!"<<endl;
+                    this->depositorname=name;
+                    this->depositoraccount=accNo;
+                    this->balance=bal;
                 }
-                else if(amount <= balance)
+            void deposit(double amount)
                 {
-                    balance = balance - amount;
-                    cout<<"Withdrawal Successful!"<<endl;
-                }
-                else
+                    if(amount>=500 && amount<=50000)
+                        {
+                            balance=balance+amount;
+                            cout<<"------Deposit successfull------!!!"<<endl;
+                        }
+                    else cout<<"Invalid amount";    
+                } 
+            void withdraw(double amount)
                 {
-                    cout<<"Insufficient Balance!"<<endl;
-                }
-            }
+                    if(amount<=0) cout<<"Ivalid amount";
+                    else if(amount<=balance) 
+                        {
+                            balance=balance-amount;
+                            cout<<"------Withdraw successfull------"<<endl;
+                        }
+                    else cout<<"Insufficient balance";    
+                }  
+            void display()
+                {
+                    cout<<" <---***--- Account Information ---***---> "<<endl;
+                    cout<<"Depositor Name: "<<depositorname<<endl;
+                    cout<<"Account Number: "<<depositoraccount<<endl;
+                    cout<<"Current Balance: "<<balance;
+                }         
+        };
+    int main()
+        {
+            string name,accNo;
+            double bal;
 
-        // Method to display account information
-        void display()
-            {
-                cout<<"\n--- Account Information ---"<<endl;
-                cout<<"Depositor Name: "<<depositorName<<endl;
-                cout<<"Account Number: "<<accountNumber<<endl;
-                cout<<"Current Balance: "<<balance<<endl;
-            }
-    };
+            cout<<"Enter Depositor Name: ";
+            getline(cin,name);
 
-int main()
-    {
-        string name, accNo;
-        double bal;
+            cout<<"Enter Account Number: ";
+            getline(cin,accNo);
 
-        cout<<"Enter Depositor Name: ";
-        getline(cin, name);
+            cout<<"Enter Initial Balance: ";
+            cin>>bal;
 
-        cout<<"Enter Account Number: ";
-        getline(cin, accNo);
+            BankAccount account(name,accNo,bal);
 
-        cout<<"Enter Initial Balance: ";
-        cin>>bal;
+            double depositamount;
+            cout<<"Enter deposit amount: ";
+            cin>>depositamount;
+            account.deposit(depositamount);
 
-        // Creating object
-        BankAccount account(name, accNo, bal);
+            double withdrawamount;
+            cout<<"Enter withdraw amount: ";
+            cin>>withdrawamount;
+            account.withdraw(withdrawamount);
 
-        // Deposit operation
-        double depositAmount;
+            account.display();
 
-        cout<<"Enter Deposit Amount: ";
-        cin>>depositAmount;
-
-        account.deposit(depositAmount);
-
-        // Withdraw operation
-        double withdrawAmount;
-
-        cout<<"Enter Withdrawal Amount: ";
-        cin>>withdrawAmount;
-
-        account.withdraw(withdrawAmount);
-        account.display();
-    }
+        }
